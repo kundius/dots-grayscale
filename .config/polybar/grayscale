@@ -1,0 +1,354 @@
+;==========================================================
+;
+;
+;   ██████╗  ██████╗ ██╗  ██╗   ██╗██████╗  █████╗ ██████╗
+;   ██╔══██╗██╔═══██╗██║  ╚██╗ ██╔╝██╔══██╗██╔══██╗██╔══██╗
+;   ██████╔╝██║   ██║██║   ╚████╔╝ ██████╔╝███████║██████╔╝
+;   ██╔═══╝ ██║   ██║██║    ╚██╔╝  ██╔══██╗██╔══██║██╔══██╗
+;   ██║     ╚██████╔╝███████╗██║   ██████╔╝██║  ██║██║  ██║
+;   ╚═╝      ╚═════╝ ╚══════╝╚═╝   ╚═════╝ ╚═╝  ╚═╝╚═╝  ╚═╝
+;
+;
+;   To learn more about how to configure Polybar
+;   go to https://github.com/jaagr/polybar
+;
+;   The README contains alot of information
+;
+;==========================================================
+
+;==Colors==================================================
+
+[colors]
+
+background = #00051733
+background-alt = #444
+foreground = #1F1F1F
+foreground-alt = #fafafa
+foreground-dark = #000000
+primary = #0288d1
+secondary = #ff6f3f
+alert = #bd2c40
+
+back0 = #0f0f0f
+back1 = #1f1f1f
+back2 = #2f2f2f
+back3 = #464646
+back4 = #5d5d5d
+
+moderate = #ebcb8b
+urgent = #bf616a
+trim = #919ba0
+blue = #a2d1ec
+purple = #b48ead
+
+;=========================================================
+
+[bar/main]
+
+monitor = ${env:MONITOR:LVDS-1-1}
+width = 100%
+height = 20
+fixed-center = false
+
+background = ${colors.background}
+foreground = ${colors.foreground}
+border-color = #00000000
+
+padding-left = 0
+padding-right = 0
+
+module-margin-left = 0
+module-margin-right = 0
+
+;========================================================
+
+font-0 = "Roboto-Regular:size=10;2"
+font-1 = "Font Awesome 5 Free:size=9;2"
+font-2 = "Font Awesome 5 Free Solid:size=9;2"
+font-3 = "Ubuntu Mono Nerd Font:size=15;3"
+font-4 = "Roboto-Regular:size=10;1"
+
+;==Module location=======================================
+
+modules-left = i3 left xwindow
+modules-center = 
+modules-right = right4 memory cpu temperature right3 volume right2 keyboard right1 hour date right0 network
+
+tray-position = right
+tray-background = ${colors.back0}
+tray-padding = 4
+tray-maxsize = 16
+
+cursor-click = pointer
+cursor-scroll = ns-resize
+
+;==Arrows================================================
+
+[module/left]
+
+type = custom/text
+content = "%{T3}%{T-}"
+
+;========================================================
+
+[module/right0]
+
+type = custom/text
+content = "%{T3}%{T-}"
+content-background = ${colors.back1}
+content-foreground = ${colors.back0}
+
+[module/right1]
+
+type = custom/text
+content = "%{T3}%{T-}"
+content-background = ${colors.back2}
+content-foreground = ${colors.back1}
+
+
+[module/right2]
+
+type = custom/text
+content = "%{T3}%{T-}"
+content-background = ${colors.back3}
+content-foreground = ${colors.back2}
+
+
+[module/right3]
+
+type = custom/text
+content = "%{T3}%{T-}"
+content-background = ${colors.back4}
+content-foreground = ${colors.back3}
+
+
+[module/right4]
+
+type = custom/text
+content = "%{T3}%{T-}"
+content-foreground = ${colors.back4}
+
+
+;==Modules===============================================
+
+[module/xwindow]
+
+type = internal/xwindow
+label = "  %title:0:60:...%  "
+format-background = #00000000
+
+
+;=======================================================
+
+
+[module/i3]
+
+type = internal/i3
+format = <label-state> <label-mode>
+index-sort = true
+wrapping-scroll = false
+
+; Only show workspaces on the same output as the bar
+pin-workspaces = true
+
+; focused = Active workspace on focused monitor
+label-focused = "%{T3}  %{T-}"
+label-focused-background = ${colors.foreground}
+label-focused-foreground = #fafafa
+
+; unfocused = Inactive workspace on any monitor
+label-unfocused = "  "
+label-unfocused-background = ${colors.foreground}
+label-unfocused-foreground = #fafafa
+
+; visible = Active workspace on unfocused monitor
+label-visible = "  "
+label-visible-background = ${colors.foreground}
+label-visible-foreground = #fafafa
+
+; urgent = Workspace with urgency hint set
+label-urgent = "  "
+label-urgent-background = ${colors.foreground}
+label-urgent-foreground = ${colors.alert}
+
+
+;======================================================
+
+
+[module/cpu]
+
+type = internal/cpu
+interval = 2
+
+format = <label>
+format-prefix = " "
+format-prefix-foreground = ${colors.foreground-alt}
+format-padding = 2
+format-background = ${colors.back4}
+format-foreground = ${colors.foreground-alt}
+label = "%percentage:2%%"
+
+
+;======================================================
+
+
+[module/memory]
+
+type = internal/memory
+interval = 2
+format = <label>
+format-prefix = " "
+format-prefix-foreground = ${colors.foreground-alt}
+format-padding = 2
+label = "%percentage_used%%"
+format-background = ${colors.back4}
+format-foreground = ${colors.foreground-alt}
+
+
+;======================================================
+
+
+[module/hour]
+
+type = internal/date
+interval = 1
+
+format-prefix = " "
+format-prefix-foreground = ${colors.foreground-alt}
+format-padding = 2
+
+date = %H:%M
+format = <label>
+format-background = ${colors.back1}
+format-foreground = ${colors.foreground-alt}
+label = "%date%"
+
+
+;======================================================
+
+
+[module/date]
+
+type = internal/date
+interval = 1
+
+format-prefix = " "
+format-prefix-foreground = ${colors.foreground-alt}
+format-padding = 2
+
+date = %d.%m.%Y%
+format = <label>
+format-background = ${colors.back1}
+format-foreground = ${colors.foreground-alt}
+label = "%date%"
+
+
+;=====================================================
+
+
+;;;;;;;;;;;;;
+;; Network ;;
+;;;;;;;;;;;;;
+[module/network]
+type = custom/script
+exec = check-network
+click-left = networkmanager_dmenu &
+click-right = networkmanager_dmenu &
+label = 
+tail = true
+format-padding = 2
+format-background = ${colors.back0}
+format-foreground = ${colors.foreground-alt}
+
+
+;;;;;;;;;;;;;;;;;
+;; TEMPERATURE ;;
+;;;;;;;;;;;;;;;;;
+[module/temperature]
+type = internal/temperature
+interval = 3
+thermal-zone = 0
+warn-temperature = 70
+format = <ramp> <label>
+format-padding = 2
+format-background = ${colors.back4}
+label = "%temperature-c%"
+label-foreground = ${colors.foreground-alt}
+ramp-0 = ""
+ramp-1 = ""
+ramp-2 = ""
+ramp-3 = ""
+ramp-4 = ""
+ramp-0-foreground = ${colors.blue}
+ramp-1-foreground = ${colors.blue}
+ramp-2-foreground = ${colors.moderate}
+ramp-3-foreground = ${colors.moderate}
+ramp-4-foreground = ${colors.urgent}
+format-warn = <label-warn>
+format-warn-padding = 2
+format-warn-background = ${colors.back4}
+label-warn = " %temperature-c%"
+label-warn-foreground = ${colors.secondary}
+
+
+;;;;;;;;;;;;
+;; Volume ;;
+;;;;;;;;;;;;
+[module/volume]
+type = internal/alsa
+master-mixer = Master
+format-volume = <ramp-volume> <label-volume>
+format-volume-background = ${colors.back3}
+format-volume-padding = 2
+label-volume = %{A3:pavucontrol & disown:}%percentage:2%%%{A}
+label-volume-foreground = ${colors.foreground-alt}
+format-muted-padding = 2
+format-muted-background = ${colors.back3}
+label-muted = " muted"
+label-muted-foreground = ${colors.foreground-alt}
+ramp-volume-0 = 
+ramp-volume-1 = 
+ramp-volume-2 = 
+ramp-volume-3 = 
+ramp-volume-0-foreground = ${colors.trim}
+ramp-volume-1-foreground = ${colors.blue}
+ramp-volume-2-foreground = ${colors.moderate}
+ramp-volume-3-foreground = ${colors.urgent}
+
+
+;=====================================================
+
+
+[module/keyboard]
+type           = internal/xkeyboard
+blacklist-0    = scroll lock
+format         = <label-layout> <label-indicator>
+format-padding = 2
+format-background = ${colors.back2}
+format-foreground = ${colors.foreground-alt}
+label-layout   = "  %{T5}%layout%%{T-}"
+label-indicator = %name%
+
+
+;=====================================================
+
+
+[settings]
+
+screenchange-reload = true
+;compositing-background = xor
+;compositing-background = screen
+;compositing-foreground = source
+;compositing-border = over
+
+;=====================================================
+
+[global/wm]
+
+margin-top = 5
+margin-bottom = 5
+
+; vim:ft=dosini
+
+;====================================================
+

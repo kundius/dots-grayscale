@@ -1,0 +1,59 @@
+configuration {
+    lines: 4;
+    columns: 1;
+    font: "Roboto Regular 18";
+    fixed-num-lines: true;
+    show-icons: false;
+    sidebar-mode: false;
+    hide-scrollbar: true;
+    fullscreen: true;
+    click-to-exit: true;
+    show-match: false;
+}
+* {
+    text-color: #f6bab2;
+    background-color: transparent;
+}
+window {
+    padding: 30% 20%;
+    //background-color: rgba ( 46, 70, 111, 45 % );
+    background-color: rgba ( 45, 45, 45, 45 % );
+}
+mainbox {
+}
+message {
+}
+textbox {
+}
+listview {
+}
+element {
+    padding: 5 0;
+}
+element urgent {
+    text-color: #ff8373;
+}
+element active {
+    text-color: #f4f6b2;
+}
+element selected {
+    text-color: #ffdfd6;
+}
+scrollbar {
+}
+sidebar {
+}
+button {
+}
+button selected {
+}
+inputbar {
+    padding: 0 0 20 0;
+}
+case-indicator {
+}
+entry {
+}
+prompt {
+    padding: 0 20 0 0;
+}
